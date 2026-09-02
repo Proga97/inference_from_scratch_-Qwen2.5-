@@ -352,7 +352,7 @@ M1 parity: True
 
 HF next token :  Washington
 My next token :  Washington
-```text
+````
 ---
 
 # KV Cache
