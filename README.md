@@ -81,8 +81,6 @@ argmax
 ...
 ```
 
-This intentionally avoids a KV cache.
-
 The benchmark measures:
 
 ```text
@@ -317,6 +315,44 @@ This repeatedly recomputes work that does not change.
 
 The benchmark demonstrates how this affects generation throughput as context grows.
 
+Parity Test Results:
+
+````text
+hidden[ 0] max diff = 0.00e+00
+hidden[ 1] max diff = 2.15e-06
+hidden[ 2] max diff = 1.91e-06
+hidden[ 3] max diff = 3.93e-06
+hidden[ 4] max diff = 7.63e-06
+hidden[ 5] max diff = 7.63e-06
+hidden[ 6] max diff = 7.63e-06
+hidden[ 7] max diff = 7.63e-06
+hidden[ 8] max diff = 7.63e-06
+hidden[ 9] max diff = 7.63e-06
+hidden[10] max diff = 7.63e-06
+hidden[11] max diff = 7.63e-06
+hidden[12] max diff = 7.63e-06
+hidden[13] max diff = 7.63e-06
+hidden[14] max diff = 7.63e-06
+hidden[15] max diff = 9.54e-06
+hidden[16] max diff = 9.06e-06
+hidden[17] max diff = 1.24e-05
+hidden[18] max diff = 1.34e-05
+hidden[19] max diff = 1.34e-05
+hidden[20] max diff = 2.29e-05
+hidden[21] max diff = 3.05e-05
+hidden[22] max diff = 3.66e-04
+hidden[23] max diff = 1.77e-04
+
+HF logits shape: torch.Size([1, 6, 151936])
+My logits shape: torch.Size([1, 6, 151936])
+
+logits max diff = 3.4332275390625e-05
+
+M1 parity: True
+
+HF next token :  Washington
+My next token :  Washington
+```text
 ---
 
 # KV Cache
@@ -326,7 +362,7 @@ The KV cache changes the decoding computation from:
 ```text
 Every step:
 recompute all previous K/V
-```
+````
 
 to:
 
